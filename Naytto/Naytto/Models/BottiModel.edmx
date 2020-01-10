@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BottikantaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Botintiedot">
+          <Key>
+            <PropertyRef Name="BottiID" />
+          </Key>
+          <Property Name="BottiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KayttajaID" Type="int" />
+          <Property Name="BottiAika" Type="datetime" />
+          <Property Name="BottiHalkoja" Type="int" />
+          <Property Name="BottiKokemuspisteita" Type="int" />
+          <Property Name="BottiRahaaTunnissa" Type="int" />
+          <Property Name="BottiTaitotasoNousu" Type="int" />
+        </EntityType>
+        <EntityType Name="Bottaajantiedot">
+          <Key>
+            <PropertyRef Name="KayttajaID" />
+          </Key>
+          <Property Name="KayttajaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BottaajaID" Type="int" />
+          <Property Name="Kayttajatunnus" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pinkoodi" Type="int" />
+        </EntityType>
+        <EntityType Name="Bottipelaaja">
+          <Key>
+            <PropertyRef Name="BottaajaID" />
+          </Key>
+          <Property Name="BottaajaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Etunimi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sukunimi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Botintiedot_Bottaajantiedot">
+          <End Role="Bottaajantiedot" Type="Self.Bottaajantiedot" Multiplicity="0..1" />
+          <End Role="Botintiedot" Type="Self.Botintiedot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bottaajantiedot">
+              <PropertyRef Name="KayttajaID" />
+            </Principal>
+            <Dependent Role="Botintiedot">
+              <PropertyRef Name="KayttajaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bottaajantiedot_ToTable">
+          <End Role="Bottipelaaja" Type="Self.Bottipelaaja" Multiplicity="0..1" />
+          <End Role="Bottaajantiedot" Type="Self.Bottaajantiedot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bottipelaaja">
+              <PropertyRef Name="BottaajaID" />
+            </Principal>
+            <Dependent Role="Bottaajantiedot">
+              <PropertyRef Name="BottaajaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BottikantaModelStoreContainer">
+          <EntitySet Name="Botintiedot" EntityType="Self.Botintiedot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bottaajantiedot" EntityType="Self.Bottaajantiedot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bottipelaaja" EntityType="Self.Bottipelaaja" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Botintiedot_Bottaajantiedot" Association="Self.FK_Botintiedot_Bottaajantiedot">
+            <End Role="Bottaajantiedot" EntitySet="Bottaajantiedot" />
+            <End Role="Botintiedot" EntitySet="Botintiedot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bottaajantiedot_ToTable" Association="Self.FK_Bottaajantiedot_ToTable">
+            <End Role="Bottipelaaja" EntitySet="Bottipelaaja" />
+            <End Role="Bottaajantiedot" EntitySet="Bottaajantiedot" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BottikantaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Botintiedot">
+          <Key>
+            <PropertyRef Name="BottiID" />
+          </Key>
+          <Property Name="BottiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KayttajaID" Type="Int32" />
+          <Property Name="BottiAika" Type="DateTime" Precision="3" />
+          <Property Name="BottiHalkoja" Type="Int32" />
+          <Property Name="BottiKokemuspisteita" Type="Int32" />
+          <Property Name="BottiRahaaTunnissa" Type="Int32" />
+          <Property Name="BottiTaitotasoNousu" Type="Int32" />
+          <NavigationProperty Name="Bottaajantiedot" Relationship="Self.FK_Botintiedot_Bottaajantiedot" FromRole="Botintiedot" ToRole="Bottaajantiedot" />
+        </EntityType>
+        <EntityType Name="Bottaajantiedot">
+          <Key>
+            <PropertyRef Name="KayttajaID" />
+          </Key>
+          <Property Name="KayttajaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BottaajaID" Type="Int32" />
+          <Property Name="Kayttajatunnus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pinkoodi" Type="Int32" />
+          <NavigationProperty Name="Botintiedot" Relationship="Self.FK_Botintiedot_Bottaajantiedot" FromRole="Bottaajantiedot" ToRole="Botintiedot" />
+          <NavigationProperty Name="Bottipelaaja" Relationship="Self.FK_Bottaajantiedot_ToTable" FromRole="Bottaajantiedot" ToRole="Bottipelaaja" />
+        </EntityType>
+        <EntityType Name="Bottipelaaja">
+          <Key>
+            <PropertyRef Name="BottaajaID" />
+          </Key>
+          <Property Name="BottaajaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Etunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sukunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bottaajantiedot" Relationship="Self.FK_Bottaajantiedot_ToTable" FromRole="Bottipelaaja" ToRole="Bottaajantiedot" />
+        </EntityType>
+        <Association Name="FK_Botintiedot_Bottaajantiedot">
+          <End Role="Bottaajantiedot" Type="Self.Bottaajantiedot" Multiplicity="0..1" />
+          <End Role="Botintiedot" Type="Self.Botintiedot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bottaajantiedot">
+              <PropertyRef Name="KayttajaID" />
+            </Principal>
+            <Dependent Role="Botintiedot">
+              <PropertyRef Name="KayttajaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bottaajantiedot_ToTable">
+          <End Role="Bottipelaaja" Type="Self.Bottipelaaja" Multiplicity="0..1" />
+          <End Role="Bottaajantiedot" Type="Self.Bottaajantiedot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bottipelaaja">
+              <PropertyRef Name="BottaajaID" />
+            </Principal>
+            <Dependent Role="Bottaajantiedot">
+              <PropertyRef Name="BottaajaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BottikantaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Botintiedot" EntityType="Self.Botintiedot" />
+          <EntitySet Name="Bottaajantiedot" EntityType="Self.Bottaajantiedot" />
+          <EntitySet Name="Bottipelaaja" EntityType="Self.Bottipelaaja" />
+          <AssociationSet Name="FK_Botintiedot_Bottaajantiedot" Association="Self.FK_Botintiedot_Bottaajantiedot">
+            <End Role="Bottaajantiedot" EntitySet="Bottaajantiedot" />
+            <End Role="Botintiedot" EntitySet="Botintiedot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bottaajantiedot_ToTable" Association="Self.FK_Bottaajantiedot_ToTable">
+            <End Role="Bottipelaaja" EntitySet="Bottipelaaja" />
+            <End Role="Bottaajantiedot" EntitySet="Bottaajantiedot" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BottikantaModelStoreContainer" CdmEntityContainer="BottikantaEntities">
+          <EntitySetMapping Name="Botintiedot">
+            <EntityTypeMapping TypeName="BottikantaModel.Botintiedot">
+              <MappingFragment StoreEntitySet="Botintiedot">
+                <ScalarProperty Name="BottiID" ColumnName="BottiID" />
+                <ScalarProperty Name="KayttajaID" ColumnName="KayttajaID" />
+                <ScalarProperty Name="BottiAika" ColumnName="BottiAika" />
+                <ScalarProperty Name="BottiHalkoja" ColumnName="BottiHalkoja" />
+                <ScalarProperty Name="BottiKokemuspisteita" ColumnName="BottiKokemuspisteita" />
+                <ScalarProperty Name="BottiRahaaTunnissa" ColumnName="BottiRahaaTunnissa" />
+                <ScalarProperty Name="BottiTaitotasoNousu" ColumnName="BottiTaitotasoNousu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bottaajantiedot">
+            <EntityTypeMapping TypeName="BottikantaModel.Bottaajantiedot">
+              <MappingFragment StoreEntitySet="Bottaajantiedot">
+                <ScalarProperty Name="KayttajaID" ColumnName="KayttajaID" />
+                <ScalarProperty Name="BottaajaID" ColumnName="BottaajaID" />
+                <ScalarProperty Name="Kayttajatunnus" ColumnName="Kayttajatunnus" />
+                <ScalarProperty Name="Pinkoodi" ColumnName="Pinkoodi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bottipelaaja">
+            <EntityTypeMapping TypeName="BottikantaModel.Bottipelaaja">
+              <MappingFragment StoreEntitySet="Bottipelaaja">
+                <ScalarProperty Name="BottaajaID" ColumnName="BottaajaID" />
+                <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
+                <ScalarProperty Name="Sukunimi" ColumnName="Sukunimi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

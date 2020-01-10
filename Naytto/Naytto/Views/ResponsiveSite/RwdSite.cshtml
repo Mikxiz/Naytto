@@ -1,0 +1,108 @@
+﻿
+@{
+	ViewBag.Title = "RwdSite";
+}
+
+<style>
+	* {
+		box-sizing: border-box;
+	}
+
+	.row::after {
+		content: "";
+		clear: both;
+		display: table;
+	}
+
+	[class*="col-"] {
+		float: left;
+		padding: 15px;
+	}
+
+	html {
+		font-family: "Lucida Sans", sans-serif;
+	}
+
+	.header {
+		background-color: #404040;
+		color: #ffffff;
+		padding: 15px;
+	}
+
+	.menu ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.menu li {
+		padding: 8px;
+		margin-bottom: 7px;
+		background-color: #666666;
+		color: #ffffff;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	}
+
+		.menu li:hover {
+			background-color: #cce6ff;
+		}
+
+	.aside {
+		background-color: #cccccc;
+		padding: 15px;
+		color: #ffffff;
+		text-align: center;
+		font-size: 14px;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	}
+
+	.footer {
+		background-color: #000000;
+		color: #ffffff;
+		text-align: center;
+		font-size: 12px;
+		padding: 15px;
+	}
+
+	/* For mobile phones: */
+	[class*="col-"] {
+		width: 100%;
+	}
+</style>
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<div class="header">
+	<h1>Älytalon ohjaus</h1>
+</div>
+
+<div class="row">
+	<div class="col-3 col-s-3 menu">
+		<ul>
+			<li>Valot</li>
+			<li>Sauna</li>
+			<li>Lämpö</li>
+			<li>Ilmastointi</li>
+		</ul>
+	</div>
+
+	<div class="col-6 col-s-9">
+		<h1>ÄlytaloApp</h1>
+		<p>Tämän ohjelmiston avulla säädetään Älytalon toimintoja: Valojen säätöä, kytketään sauna päälle ja säädellään talon lämpötilaa.</p>
+	</div>
+
+	<div class="col-3 col-s-12">
+		<div class="aside">
+			<h2>Mikä on Älytalo?</h2>
+			<p>Älytalossa kaikkia laitteita säädellään lankattomasti älylaitteen avulla.</p>
+			<h2>Missä voin käyttää Älytalon toimintoja?</h2>
+			<p>Toimintoja voi säätää niin kodissa kuin kodin ulkopuolella.</p>
+			<h2>Miten säädän toimintoja?</h2>
+			<p>Voit säätää Älytalon toimintoja kaikkialla älylaitteen avulla.</p>
+		</div>
+	</div>
+</div>
+
+<div class="footer">
+	<p>Tämä sivusto on toteutettu responsiivisesti, joten se taittuu eri levyisille älylaitteille.</p>
+</div>
