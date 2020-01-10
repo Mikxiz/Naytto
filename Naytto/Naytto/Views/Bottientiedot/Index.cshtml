@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Naytto.Models.Botintiedot>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BottiAika)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BottiHalkoja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BottiKokemuspisteita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BottiRahaaTunnissa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BottiTaitotasoNousu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bottaajantiedot.Kayttajatunnus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottiAika)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottiHalkoja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottiKokemuspisteita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottiRahaaTunnissa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottiTaitotasoNousu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bottaajantiedot.Kayttajatunnus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BottiID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BottiID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BottiID })
+        </td>
+    </tr>
+}
+
+</table>

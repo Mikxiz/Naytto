@@ -1,0 +1,66 @@
+﻿@model Naytto.Models.Botintiedot
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Botintiedot</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BottiAika)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BottiAika)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BottiHalkoja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BottiHalkoja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BottiKokemuspisteita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BottiKokemuspisteita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BottiRahaaTunnissa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BottiRahaaTunnissa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BottiTaitotasoNousu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BottiTaitotasoNousu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bottaajantiedot.Kayttajatunnus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bottaajantiedot.Kayttajatunnus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BottiID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,42 @@
+﻿@model Naytto.Models.Bottaajantiedot
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bottaajantiedot</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kayttajatunnus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kayttajatunnus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pinkoodi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pinkoodi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bottipelaaja.Etunimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bottipelaaja.Etunimi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.KayttajaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
